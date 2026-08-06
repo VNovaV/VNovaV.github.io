@@ -260,7 +260,7 @@ const LS='pf_v3';
 const LS_THEME='pf_theme';
 /* 只读模式：false=可编辑编辑器（仅你自己用）；true=公开主页（访客不可编辑）。
    发布时由下方流程把本文件复制为 editor.html（false），并生成只读的 index.html（true）。 */
-const READONLY=true;
+const READONLY=false;
 const HINT_DEF='点击 / 拖入图片';
 let sid=1;
 function newId(p){return (p||'x')+(++sid)+'_'+Date.now().toString(36);}
