@@ -91,6 +91,10 @@
   .s-cap:empty::before{content:"图片说明…";opacity:.4;pointer-events:none;}
   .s-cap:hover{border-color:var(--line-2);}
   .s-cap:focus{border-color:var(--accent);background:var(--accent-soft);color:var(--ink);}
+  .s-src{position:absolute;left:8px;right:8px;bottom:8px;z-index:3;display:block;width:calc(100% - 16px);box-sizing:border-box;font:10px/1.4 'Space Grotesk',monospace;letter-spacing:.05em;color:var(--ink-2);background:rgba(255,255,255,.72);border:1px solid var(--line-2);border-radius:3px;padding:4px 6px;outline:none;}
+  .s-src:focus{border-color:var(--accent);background:#fff;}
+  .slot.filled .s-src{opacity:0;pointer-events:none;transition:opacity .2s;}
+  .slot.filled:hover .s-src{opacity:1;pointer-events:auto;}
   .slot{
     position:relative;min-height:110px;min-width:0;
     aspect-ratio:var(--r,'4/3'); /* CSS 兜底：内联样式失效时也能保持比例 */
@@ -260,18 +264,19 @@ function newId(p){return (p||'x')+(++sid)+'_'+Date.now().toString(36);}
 
 function defaultWork(name){
   /* 与原始 PSD 模板一致：01 效果主图 / 02 渲染三视图 / 03 无光三视图 / 04 局部特写 / 05 制作过程 / 06 总结 */
-  const s=(l,ratio,hint,span)=>({id:newId('s'),label:l,ratio:ratio||'4/3',hint:HINT_DEF+(hint?' · 建议 '+hint:''),fit:'cover',span:!!span});
+  /* src 指向仓库 assets/ 下的固定图片（相对路径），访客永久可见；留空则走浏览器本地上传 */
+  const s=(l,ratio,hint,span,src)=>({id:newId('s'),label:l,ratio:ratio||'4/3',hint:HINT_DEF+(hint?' · 建议 '+hint:''),fit:'cover',span:!!span,src:src||null});
   return {
     id:newId('w'),name:name||'未命名作品',
     groups:[
       {id:newId('g'),no:'01',title:'3D角色效果主图',en:'EFFECT RENDER',layout:'gg2',slots:[
-        s('角色效果图','3/4','3:4 竖图'),s('角色无光图','3/4','3:4 竖图')]},
+        s('角色效果图','3/4','3:4 竖图',false,'assets/p01.jpg'),s('角色无光图','3/4','3:4 竖图',false,'assets/p02.jpg')]},
       {id:newId('g'),no:'02',title:'角色渲染三视图',en:'EFFECT RENDER',layout:'gg3',slots:[
-        s('角色正视图','9/16','9:16 竖图'),s('角色侧视图','9/16','9:16 竖图'),s('角色后视图','9/16','9:16 竖图')]},
+        s('角色正视图','9/16','9:16 竖图',false,'assets/p03.jpg'),s('角色侧视图','9/16','9:16 竖图',false,'assets/p04.jpg'),s('角色后视图','9/16','9:16 竖图',false,'assets/p05.jpg')]},
       {id:newId('g'),no:'03',title:'角色无光三视图',en:'EFFECT RENDER',layout:'gg3',slots:[
-        s('角色正视图','9/16','9:16 竖图'),s('角色侧视图','9/16','9:16 竖图'),s('角色后视图','9/16','9:16 竖图')]},
+        s('角色正视图','9/16','9:16 竖图',false,'assets/p06.jpg'),s('角色侧视图','9/16','9:16 竖图',false,'assets/p07.jpg'),s('角色后视图','9/16','9:16 竖图',false,'assets/p08.jpg')]},
       {id:newId('g'),no:'04',title:'角色局部特写',en:'EFFECT RENDER',layout:'gg4',slots:[
-        s('角色局部特写1','1/1','1:1 方图'),s('角色局部特写2','1/1','1:1 方图'),s('角色局部特写3','1/1','1:1 方图'),s('角色局部特写4','1/1','1:1 方图'),
+        s('角色局部特写1','1/1','1:1 方图',false,'assets/p09.jpg'),s('角色局部特写2','1/1','1:1 方图',false,'assets/p10.jpg'),s('角色局部特写3','1/1','1:1 方图'),s('角色局部特写4','1/1','1:1 方图'),
         s('角色局部特写5','16/9','16:9 横图',true),s('角色局部特写6','16/9','16:9 横图',true)]},
       {id:newId('g'),no:'05',title:'制作过程',en:'EFFECT RENDER',layout:'gg2',slots:[
         s('贴图绘制界面','16/9','16:9 横图',true),s('模型制作过程 1','16/9','16:9 横图'),s('模型制作过程 2','16/9','16:9 横图'),
@@ -394,6 +399,7 @@ function slotHTML(sl){
         <span class="s-plus"></span>
         <span class="s-label" contenteditable="true" spellcheck="false">${esc(sl.label)}</span>
         <span class="s-hint"><span contenteditable="true" spellcheck="false">${esc(sl.hint)}</span></span>
+        <input class="s-src" type="text" placeholder="图源·如 assets/p01.jpg" value="${esc(sl.src||'')}" spellcheck="false">
         <i class="imgw"><img hidden alt=""></i>
       </div>
       <div class="s-cap" contenteditable="true" spellcheck="false" data-cap="${esc(sl.id)}">${esc(sl.cap||'')}</div>
@@ -564,6 +570,7 @@ async function handleFile(id,file){
     toast('处理中…');
     const rec=await processImage(file);
     await idbPut(id,rec);
+    const sl=findSlot(id);if(sl)sl.src=null;
     renderImage(id);
     toast((rec.type==='image/png'?'PNG 保透明':'JPEG 97% 高质量')+' · 全像素 '+rec.w+'×'+rec.h+(rec.scaled?'（超 8192px 已缩放）':''));
     markSaved();
@@ -580,10 +587,15 @@ function recDisplayBlob(rec){return (rec&&rec.view)?rec.view:(rec&&rec.full)?rec
 async function renderImage(id){
   const el=document.querySelector(`.slot[data-id="${id}"]`);
   if(!el)return;
+  const sl=findSlot(id);
+  /* 固定图片：优先从仓库相对路径加载（assets/xxx.jpg），访客永久可见 */
+  if(sl&&sl.src){
+    await renderSrc(el,sl.src,sl.fit);
+    return;
+  }
   const rec=await idbGet(id);
   if(!rec)return;
   /* 重申比例，防止槽位高度塌陷 */
-  const sl=findSlot(id);
   if(sl&&sl.ratio){el.style.aspectRatio=sl.ratio;el.style.setProperty('--r',sl.ratio);}
   const img=el.querySelector('img');
   if(img.src&&img.src.startsWith('blob:'))URL.revokeObjectURL(img.src);
@@ -591,6 +603,15 @@ async function renderImage(id){
   img.hidden=false;
   el.classList.remove('empty');el.classList.add('filled');
   applyFit(el);
+}
+/* 从仓库相对路径（assets/xxx.jpg）加载固定图片 */
+async function renderSrc(el,src,fit){
+  const img=el.querySelector('img');
+  if(img.src&&img.src.startsWith('blob:'))URL.revokeObjectURL(img.src);
+  img.onerror=()=>{img.onerror=null;el.classList.add('empty');el.classList.remove('filled');img.hidden=true;toast('找不到固定图片：'+src+'（请确认仓库 assets/ 下存在该文件）');};
+  img.onload=()=>{img.onload=null;el.classList.remove('empty');el.classList.add('filled');applyFit(el);};
+  img.src=src;
+  img.hidden=false;
 }
 async function removeImage(id){
   await idbDel(id);
@@ -601,7 +622,7 @@ async function removeImage(id){
   img.hidden=true;img.removeAttribute('src');
   el.classList.add('empty');el.classList.remove('filled');
   const sl=findSlot(id);
-  if(sl)sl.fit='cover';
+  if(sl){sl.fit='cover';sl.src=null;}
   save();
   toast('图片已删除');
 }
@@ -621,6 +642,7 @@ async function restoreImages(){
   for(const w of state.works)for(const g of w.groups){
     for(const sl of (g.slots||[])){
       try{
+        if(sl.src){await renderImage(sl.id);continue;}
         const rec=await idbGet(sl.id);
         if(rec)renderImage(sl.id);
       }catch(e){}
@@ -717,6 +739,7 @@ main.addEventListener('drop',e=>{
 
 /* ---------- 点击 / 输入委托 ---------- */
 main.addEventListener('click',e=>{
+  if(e.target.closest('.s-src'))return; /* 图源输入框不触发上传 */
   const up=e.target.closest('.s-up');
   if(up){pickFile(up.closest('.slot').dataset.id);return;}
   const fit=e.target.closest('.s-fit');
@@ -775,6 +798,12 @@ function findGroupByEl(groupEl){
   return w&&w.groups.find(x=>x.id===groupEl.dataset.id);
 }
 main.addEventListener('input',e=>{
+  /* 图源输入框：实时写入 src（相对路径 assets/xxx.jpg），并刷新该窗口图片 */
+  if(e.target.classList&&e.target.classList.contains('s-src')){
+    const sl=findSlot(e.target.closest('.slot').dataset.id);
+    if(sl){sl.src=e.target.value.trim()||null;save();renderImage(sl.id);}
+    return;
+  }
   const t=e.target.closest('[contenteditable="true"]');
   if(!t)return;
   const slotEl=t.closest('.slot');
@@ -1046,12 +1075,17 @@ async function exportStatic(){
     for(const w of st.works)for(const g of w.groups)for(const s of (g.slots||[])){total++;}
     for(const w of st.works)for(const g of w.groups)for(const s of (g.slots||[])){
       try{
-        const rec=await idbGet(s.id);
-        if(rec){
-          const blob=recDisplayBlob(rec);
-          imgMap[s.id]={url:await blobToDataURL(blob),fit:s.fit||'cover'};
-          count++;
+        let url=null,fit=s.fit||'cover';
+        /* 固定图源：优先抓取仓库 assets/ 图片内嵌 */
+        if(s.src){
+          try{url=await fetchToDataURL(s.src);}catch(e){}
         }
+        /* 否则取浏览器本地上传的图片 */
+        if(!url){
+          const rec=await idbGet(s.id);
+          if(rec){url=await blobToDataURL(recDisplayBlob(rec));}
+        }
+        if(url){imgMap[s.id]={url,fit};count++;}
       }catch(e){}
     }
     const html=buildExportHTML(st,imgMap);
@@ -1066,6 +1100,12 @@ async function exportStatic(){
     console.error(e);
     toast('导出失败：'+(e&&e.message||e));
   }
+}
+async function fetchToDataURL(u){
+  const r=await fetch(u);
+  if(!r.ok)throw new Error('fetch '+r.status);
+  const b=await r.blob();
+  return await blobToDataURL(b);
 }
 
 /* ---------- 初始化 ---------- */
