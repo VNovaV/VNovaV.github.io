@@ -498,7 +498,7 @@ const fileInput=document.getElementById('fileInput');
 let pickingFor=null;
 const uploading=new Set(); /* 上传中窗口集合，防同一窗口并发覆盖 */
 const MAX_FILE_SIZE=120*1024*1024; /* 单文件上限 120MB */
-function pickFile(id){pickingFor=id;try{fileInput.value='';fileInput.click();}catch(e){toast('请直接拖拽图片到窗口');}}
+function pickFile(id){if(READONLY)return;pickingFor=id;try{fileInput.value='';fileInput.click();}catch(e){toast('请直接拖拽图片到窗口');}}
 fileInput.addEventListener('change',()=>{
   const f=fileInput.files&&fileInput.files[0];
   const pid=pickingFor;
@@ -564,6 +564,7 @@ async function processImage(file){
   return {full,view,viewW,w,h,type,scaled};
 }
 async function handleFile(id,file){
+  if(READONLY)return;
   if(!file){toast('无法读取文件');return;}
   if(!file.type.startsWith('image/')){toast('仅支持图片文件（JPG / PNG / WebP 等）');return;}
   if(file.size>MAX_FILE_SIZE){toast('文件超过 120MB 上限，请压缩后再上传');return;}
@@ -722,6 +723,7 @@ function renumberG(w){
 
 /* ---------- 文件拖拽上传 ---------- */
 main.addEventListener('dragover',e=>{
+  if(READONLY)return; /* 只读模式：禁止拖拽上传 */
   if(!(e.dataTransfer.types&&Array.prototype.indexOf.call(e.dataTransfer.types,'Files')>=0))return;
   e.preventDefault(); /* 非槽位区域也拦截，防止浏览器默认打开文件跳页 */
   const slot=e.target.closest('.slot');
@@ -732,6 +734,7 @@ main.addEventListener('dragleave',e=>{
   if(slot)slot.classList.remove('dragover');
 });
 main.addEventListener('drop',e=>{
+  if(READONLY)return; /* 只读模式：禁止拖拽上传 */
   if(!(e.dataTransfer.types&&Array.prototype.indexOf.call(e.dataTransfer.types,'Files')>=0))return;
   e.preventDefault();
   const slot=e.target.closest('.slot');
@@ -744,6 +747,7 @@ main.addEventListener('drop',e=>{
 
 /* ---------- 点击 / 输入委托 ---------- */
 main.addEventListener('click',e=>{
+  if(READONLY)return; /* 只读模式：禁止一切编辑性点击（含点击窗口上传图片） */
   if(e.target.closest('.s-src'))return; /* 图源输入框不触发上传 */
   const up=e.target.closest('.s-up');
   if(up){pickFile(up.closest('.slot').dataset.id);return;}
