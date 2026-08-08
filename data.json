@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-08T10:22:14.744Z",
+  "updatedAt": "2026-08-08T10:34:49.802Z",
   "theme": "ink",
   "sub": "3D CHARACTER · EFFECT RENDER",
   "works": [
@@ -20,22 +20,22 @@
               "label": "角色效果图",
               "ratio": "3/4",
               "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
-              "fit": "cover",
+              "fit": "contain",
               "span": false,
-              "cap": "",
-              "src": "",
-              "hash": ""
+              "cap": "pbr+npr",
+              "src": "assets/s4_msjzrzp1.jpg",
+              "hash": "4a1fab7c97a98fe205bd84ac3d9b11864d781d4842065129cbf4aa964603f043"
             },
             {
               "id": "s5_msjzrzp1",
               "label": "角色无光图",
               "ratio": "3/4",
               "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
-              "fit": "cover",
+              "fit": "contain",
               "span": false,
               "cap": "",
-              "src": "",
-              "hash": ""
+              "src": "assets/s5_msjzrzp1.jpg",
+              "hash": "16a93121d1e8cb7557bd80da0a781a0b17d931dc3fc6781217b463df58de84fd"
             }
           ]
         },
@@ -412,8 +412,12 @@
           "en": "SUMMARY · NOTES",
           "type": "summary",
           "items": [
-            "在此输入制作总结…",
-            "可记录制作周期、使用软件、心得体会等"
+            "主要使用blender建模(maya和3dsMax也会，只是blender的松弛比较好用)，pbr流程完整走了一边，接下来会进行绑骨骼，导入unity，弄个animator",
+            "制作周期大概2周多(平均每天4h(聪音的番茄钟看的))",
+            "uv利用率已经蛮高了都在80以上，融入了AI工作流，对AI建模进行了修模和重拓扑",
+            "其他使用的软件为pt(绘制贴图)，ps(修法线)，rizomUV(展UV)，ZB(高模雕刻)",
+            "给孩子一份实习吧/(ㄒoㄒ)/~~",
+            "新条目…"
           ],
           "slots": []
         }
