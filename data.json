@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-08T10:05:35.549Z",
+  "updatedAt": "2026-08-08T10:10:38.505Z",
   "theme": "ink",
   "sub": "3D CHARACTER · EFFECT RENDER",
   "works": [
     {
       "id": "w2_msjzrzp0",
-      "name": "仿终末地风格能天使 01",
+      "name": "未命名作品 01",
       "groups": [
         {
           "id": "g3_msjzrzp0",
@@ -20,7 +20,7 @@
               "label": "角色效果图",
               "ratio": "3/4",
               "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
-              "fit": "contain",
+              "fit": "cover",
               "span": false,
               "cap": "",
               "src": "assets/s4_msjzrzp1.jpg"
@@ -30,7 +30,7 @@
               "label": "角色无光图",
               "ratio": "3/4",
               "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
-              "fit": "contain",
+              "fit": "cover",
               "span": false,
               "cap": "",
               "src": "assets/s5_msjzrzp1.jpg"
@@ -183,84 +183,44 @@
               "src": "assets/s20_msjzrzp1.jpg"
             },
             {
-              "id": "s2_msk5yi17",
+              "id": "s20_msk7oq81",
               "label": "新窗口",
               "ratio": "4/3",
               "hint": "点击 / 拖入图片",
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s2_msk5yi17.jpg"
+              "src": "assets/s20_msk7oq81.jpg"
             },
             {
-              "id": "s3_msk5ywl0",
+              "id": "s21_msk7oqvv",
               "label": "新窗口",
               "ratio": "4/3",
               "hint": "点击 / 拖入图片",
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s3_msk5ywl0.jpg"
+              "src": "assets/s21_msk7oqvv.jpg"
             },
             {
-              "id": "s4_msk5yytm",
+              "id": "s22_msk7orbv",
               "label": "新窗口",
               "ratio": "4/3",
               "hint": "点击 / 拖入图片",
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s4_msk5yytm.jpg"
+              "src": "assets/s22_msk7orbv.jpg"
             },
             {
-              "id": "s5_msk5yzo0",
+              "id": "s23_msk7orr3",
               "label": "新窗口",
               "ratio": "4/3",
               "hint": "点击 / 拖入图片",
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s5_msk5yzo0.jpg"
-            },
-            {
-              "id": "s6_msk5z0p9",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "cover",
-              "span": false,
-              "cap": "",
-              "src": "assets/s6_msk5z0p9.jpg"
-            },
-            {
-              "id": "s7_msk5z9mg",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "cover",
-              "span": false,
-              "cap": "",
-              "src": "assets/s7_msk5z9mg.jpg"
-            },
-            {
-              "id": "s8_msk5zac5",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "cover",
-              "span": false,
-              "cap": "",
-              "src": "assets/s8_msk5zac5.jpg"
-            },
-            {
-              "id": "s9_msk5zavy",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "cover",
-              "span": false,
-              "cap": "",
-              "src": "assets/s9_msk5zavy.jpg"
+              "src": "assets/s23_msk7orr3.jpg"
             }
           ]
         },
@@ -278,7 +238,7 @@
               "hint": "点击 / 拖入图片 · 建议 16:9 横图",
               "fit": "cover",
               "span": true,
-              "cap": "建模",
+              "cap": "",
               "src": "assets/s22_msjzrzp1.jpg"
             },
             {
@@ -328,108 +288,38 @@
               "hint": "点击 / 拖入图片 · 建议 16:9 横图",
               "fit": "cover",
               "span": true,
-              "cap": "sp绘制贴图",
+              "cap": "",
               "src": "assets/s27_msjzrzp1.jpg"
             },
             {
-              "id": "s10_msk6ruhk",
+              "id": "s24_msk7p9jj",
               "label": "新窗口",
               "ratio": "4/3",
               "hint": "点击 / 拖入图片",
               "fit": "cover",
               "span": false,
-              "cap": "粗糙度贴图",
-              "src": "assets/s10_msk6ruhk.jpg"
+              "cap": "",
+              "src": "assets/s24_msk7p9jj.jpg"
             },
             {
-              "id": "s11_msk6rvd3",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "contain",
-              "span": false,
-              "cap": "法线贴图",
-              "src": "assets/s11_msk6rvd3.jpg"
-            },
-            {
-              "id": "s12_msk6vt62",
+              "id": "s25_msk7pabx",
               "label": "新窗口",
               "ratio": "4/3",
               "hint": "点击 / 拖入图片",
               "fit": "cover",
               "span": false,
-              "cap": "金属度贴图",
-              "src": "assets/s12_msk6vt62.jpg"
+              "cap": "",
+              "src": "assets/s25_msk7pabx.jpg"
             },
             {
-              "id": "s13_msk6vub0",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "contain",
-              "span": false,
-              "cap": "伦勃朗打光",
-              "src": "assets/s13_msk6vub0.jpg"
-            },
-            {
-              "id": "s14_msk6x2le",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "contain",
-              "span": false,
-              "cap": "rizomuv展UV clothes",
-              "src": "assets/s14_msk6x2le.jpg"
-            },
-            {
-              "id": "s15_msk6x3cp",
+              "id": "s26_msk7pq8i",
               "label": "新窗口",
               "ratio": "4/3",
               "hint": "点击 / 拖入图片",
               "fit": "cover",
               "span": false,
-              "cap": "clothes2",
-              "src": "assets/s15_msk6x3cp.jpg"
-            },
-            {
-              "id": "s16_msk7dgqa",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "cover",
-              "span": false,
-              "cap": "face",
-              "src": "assets/s16_msk7dgqa.jpg"
-            },
-            {
-              "id": "s17_msk7fmf3",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "cover",
-              "span": false,
-              "cap": "eyes",
-              "src": "assets/s17_msk7fmf3.jpg"
-            },
-            {
-              "id": "s18_msk7gfsb",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "cover",
-              "span": false,
-              "cap": "body",
-              "src": "assets/s18_msk7gfsb.jpg"
-            },
-            {
-              "id": "s19_msk7iet2",
-              "label": "新窗口",
-              "ratio": "4/3",
-              "hint": "点击 / 拖入图片",
-              "fit": "cover",
-              "span": false,
-              "cap": "ZB高模雕刻",
-              "src": "assets/s19_msk7iet2.jpg"
+              "cap": "",
+              "src": "assets/s26_msk7pq8i.jpg"
             }
           ]
         },
