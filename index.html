@@ -198,6 +198,20 @@
 
   .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(14px);background:var(--ink);color:var(--paper);font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.15em;padding:12px 26px;border-radius:4px;opacity:0;pointer-events:none;transition:all .3s var(--expo);z-index:300;}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ---------- 大图查看 lightbox（仅只读展示页生效） ---------- */
+  .lightbox{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;
+    background:rgba(10,11,14,.92);backdrop-filter:blur(6px);padding:5vh 5vw;
+    opacity:0;visibility:hidden;transition:opacity .25s var(--expo),visibility .25s;}
+  .lightbox.show{opacity:1;visibility:visible;}
+  .lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.6);background:#fff;}
+  .lb-close{position:fixed;top:22px;right:26px;width:44px;height:44px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:#fff;
+    font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:background .2s,transform .2s;}
+  .lb-close:hover{background:rgba(255,255,255,.2);transform:rotate(90deg);}
+
   input[type=file]{display:none;}
 
   @media (max-width:1300px){
@@ -250,6 +264,11 @@
 
 <div class="toast" id="toast"></div>
 <input type="file" id="fileInput" accept="image/*">
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" id="lbClose" title="关闭（Esc）" aria-label="关闭">×</button>
+  <img id="lbImg" alt="作品大图">
+</div>
 
 <script>
 /* ================================================================
@@ -747,7 +766,12 @@ main.addEventListener('drop',e=>{
 
 /* ---------- 点击 / 输入委托 ---------- */
 main.addEventListener('click',e=>{
-  if(READONLY)return; /* 只读模式：禁止一切编辑性点击（含点击窗口上传图片） */
+  if(READONLY){
+    /* 只读展示页：点击已填图的窗口 -> 放大查看；其余点击无效 */
+    const slotEl=e.target.closest('.slot.filled');
+    if(slotEl)openLightbox(slotEl.querySelector('img'));
+    return;
+  }
   if(e.target.closest('.s-src'))return; /* 图源输入框不触发上传 */
   const up=e.target.closest('.s-up');
   if(up){pickFile(up.closest('.slot').dataset.id);return;}
@@ -1127,8 +1151,33 @@ function lockUI(){
     .s-ops,.s-src,.fab,footer button,.w-ops,.g-ops,.add-slot,.add-item,.summary-panel li .srm{display:none!important;}
     .slot.empty{display:none!important;}
     .slot,.s-label,.s-hint,.s-cap,.g-no,.g-title,.g-en,.w-name{cursor:default!important;}
+    .slot.filled{cursor:zoom-in!important;}
   `;
   const st=document.createElement('style');st.id='readonly-lock';st.textContent=css;document.head.appendChild(st);
+}
+
+/* ---------- 大图查看 lightbox（仅只读模式触发） ---------- */
+function openLightbox(img){
+  if(!img||!img.src)return;
+  const lb=document.getElementById('lightbox');
+  const lbImg=document.getElementById('lbImg');
+  lbImg.src=img.src;lbImg.alt=img.alt||'';
+  lb.hidden=false;
+  requestAnimationFrame(()=>lb.classList.add('show'));
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  const lb=document.getElementById('lightbox');
+  if(lb.hidden)return;
+  lb.classList.remove('show');
+  document.body.style.overflow='';
+  setTimeout(()=>{lb.hidden=true;const i=document.getElementById('lbImg');if(i)i.removeAttribute('src');},220);
+}
+function initLightbox(){
+  document.getElementById('lbClose').addEventListener('click',closeLightbox);
+  /* 点击背景（非图片、非关闭按钮）关闭 */
+  document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')closeLightbox();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 }
 
 /* ---------- 初始化 ---------- */
@@ -1142,7 +1191,7 @@ async function init(){
   build();
   initReveal();
   restoreImages();
-  if(READONLY)lockUI();
+  if(READONLY){lockUI();initLightbox();}
   fixSlotHeights();
   onParallax();
   /* 兜底：加载后强制检查一次视口内章节（防止任何 IO 异常导致动画缺失） */
