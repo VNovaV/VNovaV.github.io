@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-08T07:36:51.045Z",
-  "theme": "paper",
+  "updatedAt": "2026-08-08T10:05:35.549Z",
+  "theme": "ink",
   "sub": "3D CHARACTER · EFFECT RENDER",
   "works": [
     {
       "id": "w2_msjzrzp0",
-      "name": "未命名作品 01",
+      "name": "仿终末地风格能天使 01",
       "groups": [
         {
           "id": "g3_msjzrzp0",
@@ -20,7 +20,7 @@
               "label": "角色效果图",
               "ratio": "3/4",
               "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
-              "fit": "cover",
+              "fit": "contain",
               "span": false,
               "cap": "",
               "src": "assets/s4_msjzrzp1.jpg"
@@ -30,7 +30,7 @@
               "label": "角色无光图",
               "ratio": "3/4",
               "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
-              "fit": "cover",
+              "fit": "contain",
               "span": false,
               "cap": "",
               "src": "assets/s5_msjzrzp1.jpg"
@@ -52,7 +52,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s7_msjzrzp1.jpg"
             },
             {
               "id": "s8_msjzrzp1",
@@ -62,7 +62,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s8_msjzrzp1.jpg"
             },
             {
               "id": "s9_msjzrzp1",
@@ -72,7 +72,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s9_msjzrzp1.jpg"
             }
           ]
         },
@@ -91,7 +91,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s11_msjzrzp1.jpg"
             },
             {
               "id": "s12_msjzrzp1",
@@ -101,7 +101,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s12_msjzrzp1.jpg"
             },
             {
               "id": "s13_msjzrzp1",
@@ -111,7 +111,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s13_msjzrzp1.jpg"
             }
           ]
         },
@@ -130,7 +130,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/p09.jpg"
+              "src": "assets/s15_msjzrzp1.jpg"
             },
             {
               "id": "s16_msjzrzp1",
@@ -140,7 +140,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/p10.jpg"
+              "src": "assets/s16_msjzrzp1.jpg"
             },
             {
               "id": "s17_msjzrzp1",
@@ -150,7 +150,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s17_msjzrzp1.jpg"
             },
             {
               "id": "s18_msjzrzp1",
@@ -160,7 +160,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s18_msjzrzp1.jpg"
             },
             {
               "id": "s19_msjzrzp1",
@@ -170,7 +170,7 @@
               "fit": "cover",
               "span": true,
               "cap": "",
-              "src": ""
+              "src": "assets/s19_msjzrzp1.jpg"
             },
             {
               "id": "s20_msjzrzp1",
@@ -180,7 +180,87 @@
               "fit": "cover",
               "span": true,
               "cap": "",
-              "src": ""
+              "src": "assets/s20_msjzrzp1.jpg"
+            },
+            {
+              "id": "s2_msk5yi17",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/s2_msk5yi17.jpg"
+            },
+            {
+              "id": "s3_msk5ywl0",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/s3_msk5ywl0.jpg"
+            },
+            {
+              "id": "s4_msk5yytm",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/s4_msk5yytm.jpg"
+            },
+            {
+              "id": "s5_msk5yzo0",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/s5_msk5yzo0.jpg"
+            },
+            {
+              "id": "s6_msk5z0p9",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/s6_msk5z0p9.jpg"
+            },
+            {
+              "id": "s7_msk5z9mg",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/s7_msk5z9mg.jpg"
+            },
+            {
+              "id": "s8_msk5zac5",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/s8_msk5zac5.jpg"
+            },
+            {
+              "id": "s9_msk5zavy",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/s9_msk5zavy.jpg"
             }
           ]
         },
@@ -198,8 +278,8 @@
               "hint": "点击 / 拖入图片 · 建议 16:9 横图",
               "fit": "cover",
               "span": true,
-              "cap": "",
-              "src": ""
+              "cap": "建模",
+              "src": "assets/s22_msjzrzp1.jpg"
             },
             {
               "id": "s23_msjzrzp1",
@@ -209,7 +289,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s23_msjzrzp1.jpg"
             },
             {
               "id": "s24_msjzrzp1",
@@ -219,7 +299,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s24_msjzrzp1.jpg"
             },
             {
               "id": "s25_msjzrzp1",
@@ -229,7 +309,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s25_msjzrzp1.jpg"
             },
             {
               "id": "s26_msjzrzp1",
@@ -239,7 +319,7 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": ""
+              "src": "assets/s26_msjzrzp1.jpg"
             },
             {
               "id": "s27_msjzrzp1",
@@ -248,8 +328,108 @@
               "hint": "点击 / 拖入图片 · 建议 16:9 横图",
               "fit": "cover",
               "span": true,
-              "cap": "",
-              "src": ""
+              "cap": "sp绘制贴图",
+              "src": "assets/s27_msjzrzp1.jpg"
+            },
+            {
+              "id": "s10_msk6ruhk",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "粗糙度贴图",
+              "src": "assets/s10_msk6ruhk.jpg"
+            },
+            {
+              "id": "s11_msk6rvd3",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "contain",
+              "span": false,
+              "cap": "法线贴图",
+              "src": "assets/s11_msk6rvd3.jpg"
+            },
+            {
+              "id": "s12_msk6vt62",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "金属度贴图",
+              "src": "assets/s12_msk6vt62.jpg"
+            },
+            {
+              "id": "s13_msk6vub0",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "contain",
+              "span": false,
+              "cap": "伦勃朗打光",
+              "src": "assets/s13_msk6vub0.jpg"
+            },
+            {
+              "id": "s14_msk6x2le",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "contain",
+              "span": false,
+              "cap": "rizomuv展UV clothes",
+              "src": "assets/s14_msk6x2le.jpg"
+            },
+            {
+              "id": "s15_msk6x3cp",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "clothes2",
+              "src": "assets/s15_msk6x3cp.jpg"
+            },
+            {
+              "id": "s16_msk7dgqa",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "face",
+              "src": "assets/s16_msk7dgqa.jpg"
+            },
+            {
+              "id": "s17_msk7fmf3",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "eyes",
+              "src": "assets/s17_msk7fmf3.jpg"
+            },
+            {
+              "id": "s18_msk7gfsb",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "body",
+              "src": "assets/s18_msk7gfsb.jpg"
+            },
+            {
+              "id": "s19_msk7iet2",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "ZB高模雕刻",
+              "src": "assets/s19_msk7iet2.jpg"
             }
           ]
         },
