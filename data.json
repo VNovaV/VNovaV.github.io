@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-08T10:20:18.431Z",
+  "updatedAt": "2026-08-08T10:22:14.744Z",
   "theme": "ink",
   "sub": "3D CHARACTER · EFFECT RENDER",
   "works": [
     {
       "id": "w2_msjzrzp0",
-      "name": "未命名作品 01",
+      "name": "仿终末地能天使建模 01",
       "groups": [
         {
           "id": "g3_msjzrzp0",
@@ -20,22 +20,22 @@
               "label": "角色效果图",
               "ratio": "3/4",
               "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
-              "fit": "contain",
+              "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s4_msjzrzp1.jpg",
-              "hash": "4a1fab7c97a98fe205bd84ac3d9b11864d781d4842065129cbf4aa964603f043"
+              "src": "",
+              "hash": ""
             },
             {
               "id": "s5_msjzrzp1",
               "label": "角色无光图",
               "ratio": "3/4",
               "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
-              "fit": "contain",
+              "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s5_msjzrzp1.jpg",
-              "hash": "16a93121d1e8cb7557bd80da0a781a0b17d931dc3fc6781217b463df58de84fd"
+              "src": "",
+              "hash": ""
             }
           ]
         },
@@ -256,7 +256,7 @@
               "hint": "点击 / 拖入图片 · 建议 16:9 横图",
               "fit": "cover",
               "span": true,
-              "cap": "",
+              "cap": "中高模",
               "src": "assets/s22_msjzrzp1.jpg",
               "hash": "6e2f3f56d7a5946a420cac4f2f4be65a010c69e5a903d17244fce81608b09b20"
             },
@@ -278,7 +278,7 @@
               "hint": "点击 / 拖入图片 · 建议 16:9 横图",
               "fit": "cover",
               "span": false,
-              "cap": "",
+              "cap": "减线",
               "src": "assets/s24_msjzrzp1.jpg",
               "hash": "55832855dd8b862a4bdc4a7ce2195a9ea031710664769f39da68af81d3750b5d"
             },
@@ -300,7 +300,7 @@
               "hint": "点击 / 拖入图片 · 建议 16:9 横图",
               "fit": "cover",
               "span": false,
-              "cap": "",
+              "cap": "人体",
               "src": "assets/s26_msjzrzp1.jpg",
               "hash": "0291ec383f5b4cc9f68869decce4040ad4e7e4d2fc6dcf81a7304c3b9c2efbe5"
             },
@@ -311,7 +311,7 @@
               "hint": "点击 / 拖入图片 · 建议 16:9 横图",
               "fit": "cover",
               "span": true,
-              "cap": "",
+              "cap": "pt绘制",
               "src": "assets/s27_msjzrzp1.jpg",
               "hash": "7af11841ae4a5c9bef4af2b362f6bf8311a9795f0d8cc8d5b2aedf673a3902e4"
             },
