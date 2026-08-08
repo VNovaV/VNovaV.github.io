@@ -228,6 +228,15 @@
   .lb-zoom-label{min-width:54px;text-align:center;font-variant-numeric:tabular-nums;letter-spacing:.05em;}
 
   input[type=file]{display:none;}
+  /* ---------- 发布到 GitHub 面板（仅编辑器可见） ---------- */
+  .gh-panel{position:fixed;left:16px;bottom:16px;z-index:60;width:300px;max-width:calc(100vw - 32px);background:var(--paper,#fff);border:1px solid var(--line,#e2e0db);border-radius:10px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.18);font-family:'Space Grotesk',monospace;}
+  .gh-title{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2,#8a8a8a);margin-bottom:8px;}
+  .gh-input{width:100%;box-sizing:border-box;padding:8px 10px;font-family:inherit;font-size:12px;border:1px solid var(--line,#e2e0db);border-radius:6px;margin-bottom:8px;background:var(--bg,#fafafa);color:var(--ink,#222);}
+  .gh-row{display:flex;gap:8px;}
+  .gh-btn{flex:1;padding:8px 10px;font-family:inherit;font-size:11px;letter-spacing:.06em;border:1px solid var(--line,#e2e0db);border-radius:6px;background:none;color:var(--ink,#222);cursor:pointer;transition:opacity .15s;}
+  .gh-btn.gh-primary{background:var(--ink,#222);color:var(--paper,#fff);border-color:var(--ink,#222);}
+  .gh-btn:hover{opacity:.85;}
+  .gh-note{margin-top:8px;font-size:10px;line-height:1.5;color:var(--ink-2,#8a8a8a);}
 
   @media (max-width:1300px){
     .slots.gg3,.slots.gg4{grid-template-columns:repeat(2,minmax(0,1fr));}
@@ -277,6 +286,15 @@
   <button id="btnExport" title="导出静态作品集（图片内嵌，可公开发布）" style="border-radius:3px;border:1px solid var(--accent);padding:6px 12px;font-family:'Space Grotesk',monospace;font-size:10px;letter-spacing:.15em;color:var(--accent);background:none;font-weight:600;">导出静态页</button>
 </footer>
 
+<div class="gh-panel" id="ghPanel">
+  <div class="gh-title">发布到 GitHub</div>
+  <input type="password" id="ghToken" class="gh-input" placeholder="粘贴 GitHub 令牌（repo 权限）" autocomplete="off" spellcheck="false">
+  <div class="gh-row">
+    <button id="ghSave" class="gh-btn gh-primary" title="提交图片与内容到仓库">保存到 GitHub</button>
+    <button id="ghLoad" class="gh-btn" title="从仓库载入已发布内容到本地">载入已发布</button>
+  </div>
+  <div class="gh-note">令牌仅存浏览器 sessionStorage，关页即清，不写入仓库或公开文件。</div>
+</div>
 <div class="toast" id="toast"></div>
 <input type="file" id="fileInput" accept="image/*">
 
@@ -1167,7 +1185,7 @@ function lockUI(){
   document.querySelectorAll('[contenteditable]').forEach(e=>e.removeAttribute('contenteditable'));
   /* 隐藏一切编辑控件；未配置固定图的空格子也隐藏，避免访客看到空白占位 */
   const css=`
-    .s-ops,.s-src,.fab,footer button,.w-ops,.g-ops,.add-slot,.add-item,.summary-panel li .srm{display:none!important;}
+    .s-ops,.s-src,.fab,footer button,.w-ops,.g-ops,.add-slot,.add-item,.summary-panel li .srm,.gh-panel{display:none!important;}
     .slot.empty{display:none!important;}
     .slot,.s-label,.s-hint,.s-cap,.g-no,.g-title,.g-en,.w-name{cursor:default!important;}
     .slot.filled{cursor:zoom-in!important;}
@@ -1258,11 +1276,115 @@ function initLightbox(){
   });
 }
 
+/* ---------- 发布到 GitHub（编辑器：浏览器直连 GitHub Contents API） ---------- */
+const GH={owner:'VNovaV',repo:'VNovaV.github.io',branch:'main'};
+const GH_API='https://api.github.com';
+
+function ghToken(){return (sessionStorage.getItem('gh_token')||'').trim();}
+function utf8ToBase64(str){
+  const bytes=new TextEncoder().encode(str);
+  let bin='';for(let i=0;i<bytes.length;i++)bin+=String.fromCharCode(bytes[i]);
+  return btoa(bin);
+}
+function assetName(slId){return 'assets/'+String(slId).replace(/[^a-zA-Z0-9_-]/g,'')+'.jpg';}
+async function ghApiPut(path,contentB64,message,sha){
+  const url=`${GH_API}/repos/${GH.owner}/${GH.repo}/contents/${path}`;
+  const body={message,content:contentB64};
+  if(sha)body.sha=sha;
+  const res=await fetch(url,{method:'PUT',headers:{'Authorization':'Bearer '+ghToken(),'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify(body)});
+  if(!res.ok){let m='';try{m=(await res.json()).message||'';}catch(e){}throw new Error('GitHub '+res.status+(m?'：'+m:''));}
+  return res.json();
+}
+async function ghApiGetSha(path){
+  const url=`${GH_API}/repos/${GH.owner}/${GH.repo}/contents/${path}`;
+  try{
+    const res=await fetch(url,{headers:{'Authorization':'Bearer '+ghToken(),'Accept':'application/vnd.github+json'}});
+    if(res.status===404)return null;
+    if(!res.ok)throw new Error('GitHub '+res.status);
+    return (await res.json()).sha;
+  }catch(e){return null;}
+}
+function blobToJpegB64(blob,maxSide){
+  return new Promise((res,rej)=>{
+    createImageBitmap(blob).then(bmp=>{
+      let w=bmp.width,h=bmp.height;
+      const sc=Math.min(1,maxSide/Math.max(w,h));
+      w=Math.max(1,Math.round(w*sc));h=Math.max(1,Math.round(h*sc));
+      const c=document.createElement('canvas');c.width=w;c.height=h;
+      c.getContext('2d').drawImage(bmp,0,0,w,h);
+      if(bmp.close)bmp.close();
+      c.toBlob(b=>{
+        if(!b)return rej(new Error('编码失败'));
+        const fr=new FileReader();
+        fr.onload=()=>res(String(fr.result).split(',')[1]);
+        fr.onerror=()=>rej(new Error('读取失败'));
+        fr.readAsDataURL(b);
+      },'image/jpeg',0.9);
+    }).catch(rej);
+  });
+}
+async function saveToGitHub(){
+  const tok=ghToken();
+  if(!tok){toast('请先粘贴 GitHub 令牌（repo 权限）');document.getElementById('ghToken').focus();return;}
+  try{
+    toast('正在收集图片…');
+    /* 1) 收集已上传图片 -> assets/<id>.jpg */
+    const assets=[];
+    for(const w of state.works)for(const g of w.groups)for(const sl of (g.slots||[])){
+      try{
+        const rec=await idbGet(sl.id);
+        if(!rec)continue;
+        const b64=await blobToJpegB64(recDisplayBlob(rec),2560);
+        assets.push({file:assetName(sl.id),b64});
+      }catch(e){}
+    }
+    /* 2) 构建 data.json（结构 + 文字 + 各窗口 src 指向 assets） */
+    const works=state.works.map(w=>({
+      id:w.id,name:w.name,
+      groups:w.groups.map(g=>({
+        id:g.id,no:g.no,title:g.title,en:g.en,layout:g.layout,type:g.type,items:g.items,
+        slots:(g.slots||[]).map(sl=>({
+          id:sl.id,label:sl.label,ratio:sl.ratio,hint:sl.hint,fit:sl.fit||'cover',span:!!sl.span,cap:sl.cap||'',
+          src:( (assets.find(a=>a.file===assetName(sl.id))) ? assetName(sl.id) : (sl.src||'') )
+        }))
+      }))
+    }));
+    const published={version:1,updatedAt:new Date().toISOString(),theme:(localStorage.getItem(LS_THEME)||'paper'),sub:state.sub,works};
+    const dataB64=utf8ToBase64(JSON.stringify(published,null,2));
+    /* 3) 提交：先图片，再 data.json */
+    let n=0;
+    for(const a of assets){
+      const sha=await ghApiGetSha(a.file);
+      await ghApiPut(a.file,a.b64,'update asset '+a.file,sha);
+      n++;toast('已上传图片 '+n+'/'+assets.length);
+    }
+    const dsha=await ghApiGetSha('data.json');
+    await ghApiPut('data.json',dataB64,'publish portfolio',dsha);
+    toast('✅ 已发布到 GitHub，公开页刷新即可见');
+  }catch(e){
+    console.error(e);
+    toast('发布失败：'+(e&&e.message||e));
+  }
+}
+async function loadPublished(){
+  try{
+    const res=await fetch('data.json',{cache:'no-store'});
+    if(!res.ok)return false;
+    const data=await res.json();
+    if(!data||!Array.isArray(data.works)||!data.works.length)return false;
+    state.works=data.works;
+    if(data.theme)setTheme(data.theme);
+    if(data.sub)state.sub=data.sub;
+    return true;
+  }catch(e){return false;}
+}
+
 /* ---------- 初始化 ---------- */
 async function init(){
   try{await openDB();}
   catch(e){console.error('IndexedDB 打开失败',e);toast('本地存储不可用：图片将无法保存');}
   if(orphanKeys.length){Promise.all(orphanKeys.map(k=>idbDel(k).catch(()=>{})));orphanKeys=[];}
+  if(READONLY){ await loadPublished(); } /* 公开页：优先用仓库已发布内容 */
   const sub=document.getElementById('siteSub');
   sub.textContent=state.sub;
   sub.addEventListener('input',()=>{state.sub=sub.textContent;save();});
@@ -1280,6 +1402,13 @@ async function init(){
     });
   },600);
   if(!READONLY){
+    const ghTokEl=document.getElementById('ghToken');
+    if(ghTokEl){ghTokEl.value=ghToken();ghTokEl.addEventListener('input',()=>{sessionStorage.setItem('gh_token',ghTokEl.value.trim());});}
+    document.getElementById('ghSave').addEventListener('click',saveToGitHub);
+    document.getElementById('ghLoad').addEventListener('click',async()=>{
+      if(await loadPublished()){build();restoreImages();fixSlotHeights();toast('已载入已发布内容');}
+      else toast('尚未发布过（仓库没有 data.json）');
+    });
     document.getElementById('btnAddWork').addEventListener('click',addWork);
     document.getElementById('btnExport').addEventListener('click',exportStatic);
     document.getElementById('btnClear').addEventListener('click',async()=>{
