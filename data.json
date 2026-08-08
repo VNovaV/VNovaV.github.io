@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-08T10:10:38.505Z",
+  "updatedAt": "2026-08-08T10:17:08.943Z",
   "theme": "ink",
   "sub": "3D CHARACTER · EFFECT RENDER",
   "works": [
@@ -23,7 +23,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s4_msjzrzp1.jpg"
+              "src": "assets/s4_msjzrzp1.jpg",
+              "hash": "4a1fab7c97a98fe205bd84ac3d9b11864d781d4842065129cbf4aa964603f043"
             },
             {
               "id": "s5_msjzrzp1",
@@ -33,7 +34,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s5_msjzrzp1.jpg"
+              "src": "assets/s5_msjzrzp1.jpg",
+              "hash": "16a93121d1e8cb7557bd80da0a781a0b17d931dc3fc6781217b463df58de84fd"
             }
           ]
         },
@@ -52,7 +54,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s7_msjzrzp1.jpg"
+              "src": "assets/s7_msjzrzp1.jpg",
+              "hash": "ac65549ac3e940cadc0af172421a1473a6c2b8a71161118596391eee4b0d5680"
             },
             {
               "id": "s8_msjzrzp1",
@@ -62,7 +65,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s8_msjzrzp1.jpg"
+              "src": "assets/s8_msjzrzp1.jpg",
+              "hash": "aafb9a5eb31756fff82ce756a888036967692f1c8d71489b8d29655c4970f45f"
             },
             {
               "id": "s9_msjzrzp1",
@@ -72,7 +76,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s9_msjzrzp1.jpg"
+              "src": "assets/s9_msjzrzp1.jpg",
+              "hash": "a84488ba0a0f4af796325e1b467b65f918ec3957a0d4eaeed1b214f2222a142d"
             }
           ]
         },
@@ -91,7 +96,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s11_msjzrzp1.jpg"
+              "src": "assets/s11_msjzrzp1.jpg",
+              "hash": "8898c31fd3ef77bb968e7464acba30ae2a4f417de39fd5d9c7ef72c872ceff1c"
             },
             {
               "id": "s12_msjzrzp1",
@@ -101,7 +107,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s12_msjzrzp1.jpg"
+              "src": "assets/s12_msjzrzp1.jpg",
+              "hash": "20492edbe404304f2465df96d7e9c116f47bfd9071be6de37dcf3d6beda39439"
             },
             {
               "id": "s13_msjzrzp1",
@@ -111,7 +118,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s13_msjzrzp1.jpg"
+              "src": "assets/s13_msjzrzp1.jpg",
+              "hash": "9ee106fe01bf53f551fc4e63b9c2b9055e634dae7bccc0cf47be6cd5ad615066"
             }
           ]
         },
@@ -130,7 +138,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s15_msjzrzp1.jpg"
+              "src": "assets/s15_msjzrzp1.jpg",
+              "hash": "67ac11155f71576d9a2f20e39890feb1b7fe2075d8ff845f92283a7372c68e89"
             },
             {
               "id": "s16_msjzrzp1",
@@ -140,7 +149,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s16_msjzrzp1.jpg"
+              "src": "assets/s16_msjzrzp1.jpg",
+              "hash": "681154f1d793ba4061fdbd0bd1459ac217b44775f100939b82299b6e417a7a5f"
             },
             {
               "id": "s17_msjzrzp1",
@@ -150,7 +160,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s17_msjzrzp1.jpg"
+              "src": "assets/s17_msjzrzp1.jpg",
+              "hash": "433545cb48ab1018bbcebd82fe983959414a037f7d313d6a784d163cc15c1c27"
             },
             {
               "id": "s18_msjzrzp1",
@@ -160,7 +171,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s18_msjzrzp1.jpg"
+              "src": "assets/s18_msjzrzp1.jpg",
+              "hash": "0c908ab878c1bb21971b689997bcec71a5daf5a252a8c263ec3d4ed2f3f970d5"
             },
             {
               "id": "s19_msjzrzp1",
@@ -170,7 +182,8 @@
               "fit": "cover",
               "span": true,
               "cap": "",
-              "src": "assets/s19_msjzrzp1.jpg"
+              "src": "assets/s19_msjzrzp1.jpg",
+              "hash": "c5bf738d3b923c5c941d4d685b1fc8a12d1ac22464784e7b8bb216f121093489"
             },
             {
               "id": "s20_msjzrzp1",
@@ -180,7 +193,8 @@
               "fit": "cover",
               "span": true,
               "cap": "",
-              "src": "assets/s20_msjzrzp1.jpg"
+              "src": "assets/s20_msjzrzp1.jpg",
+              "hash": "d69364fda29a627353fcf4fd3adb775a3842d13cac5a60a197d32affb4bd5b7a"
             },
             {
               "id": "s20_msk7oq81",
@@ -190,7 +204,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s20_msk7oq81.jpg"
+              "src": "assets/s20_msk7oq81.jpg",
+              "hash": "6211be14d8f82d9ca30c2064c99ea328dc908eccd3407929f993cd63279e218c"
             },
             {
               "id": "s21_msk7oqvv",
@@ -200,7 +215,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s21_msk7oqvv.jpg"
+              "src": "assets/s21_msk7oqvv.jpg",
+              "hash": "80eeae99dee2b17a55e490030c3ebc16b8fd6404aa7f0b15928a13a3c0687a11"
             },
             {
               "id": "s22_msk7orbv",
@@ -210,7 +226,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s22_msk7orbv.jpg"
+              "src": "assets/s22_msk7orbv.jpg",
+              "hash": "aea0601f59bcf20c062b6f060b70555f619219ee9dab3c8ae5c6422a46e4b698"
             },
             {
               "id": "s23_msk7orr3",
@@ -220,7 +237,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s23_msk7orr3.jpg"
+              "src": "assets/s23_msk7orr3.jpg",
+              "hash": "4438eb208f8b3fa57e99d7f75c9e4428f82cfe48b15659cdce854b1bfba4f194"
             }
           ]
         },
@@ -239,7 +257,8 @@
               "fit": "cover",
               "span": true,
               "cap": "",
-              "src": "assets/s22_msjzrzp1.jpg"
+              "src": "assets/s22_msjzrzp1.jpg",
+              "hash": "6e2f3f56d7a5946a420cac4f2f4be65a010c69e5a903d17244fce81608b09b20"
             },
             {
               "id": "s23_msjzrzp1",
@@ -249,7 +268,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s23_msjzrzp1.jpg"
+              "src": "assets/s23_msjzrzp1.jpg",
+              "hash": "ac6a24f58fc3fbfb7a0e87b3bb9a1a6efa822a12fb988e9ebe045ea0d71f5524"
             },
             {
               "id": "s24_msjzrzp1",
@@ -259,7 +279,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s24_msjzrzp1.jpg"
+              "src": "assets/s24_msjzrzp1.jpg",
+              "hash": "55832855dd8b862a4bdc4a7ce2195a9ea031710664769f39da68af81d3750b5d"
             },
             {
               "id": "s25_msjzrzp1",
@@ -269,7 +290,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s25_msjzrzp1.jpg"
+              "src": "assets/s25_msjzrzp1.jpg",
+              "hash": "64d079c6aa1d087371c3312702aa341e00d4769800c1836c2950cf7b2575b0ee"
             },
             {
               "id": "s26_msjzrzp1",
@@ -279,7 +301,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s26_msjzrzp1.jpg"
+              "src": "assets/s26_msjzrzp1.jpg",
+              "hash": "0291ec383f5b4cc9f68869decce4040ad4e7e4d2fc6dcf81a7304c3b9c2efbe5"
             },
             {
               "id": "s27_msjzrzp1",
@@ -289,7 +312,8 @@
               "fit": "cover",
               "span": true,
               "cap": "",
-              "src": "assets/s27_msjzrzp1.jpg"
+              "src": "assets/s27_msjzrzp1.jpg",
+              "hash": "7af11841ae4a5c9bef4af2b362f6bf8311a9795f0d8cc8d5b2aedf673a3902e4"
             },
             {
               "id": "s24_msk7p9jj",
@@ -298,8 +322,9 @@
               "hint": "点击 / 拖入图片",
               "fit": "cover",
               "span": false,
-              "cap": "",
-              "src": "assets/s24_msk7p9jj.jpg"
+              "cap": "法线贴图",
+              "src": "assets/s24_msk7p9jj.jpg",
+              "hash": "c8d4cb81853822c4a5baf297f845ee341afd3fc89ac2d9466f3693d064fe7b2f"
             },
             {
               "id": "s25_msk7pabx",
@@ -308,8 +333,9 @@
               "hint": "点击 / 拖入图片",
               "fit": "cover",
               "span": false,
-              "cap": "",
-              "src": "assets/s25_msk7pabx.jpg"
+              "cap": "粗糙度贴图",
+              "src": "assets/s25_msk7pabx.jpg",
+              "hash": "9bd0ea872a17d8ee4c2d8aad00de71abea1d50ba21803fafc1f5cb0e070fde75"
             },
             {
               "id": "s26_msk7pq8i",
@@ -318,8 +344,64 @@
               "hint": "点击 / 拖入图片",
               "fit": "cover",
               "span": false,
-              "cap": "",
-              "src": "assets/s26_msk7pq8i.jpg"
+              "cap": "金属度贴图",
+              "src": "assets/s26_msk7pq8i.jpg",
+              "hash": "085b24e066585441e41ef664f52c0595fc6989b6f31a99dfff353f1f4545e1c0"
+            },
+            {
+              "id": "s2_msk7wn63",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "rizomUV展uv clothes",
+              "src": "assets/s2_msk7wn63.jpg",
+              "hash": "7486a12f45e81b1b570a0a9e382be7d9204e2583a36844040a5b72bbf40ff9b0"
+            },
+            {
+              "id": "s3_msk7x9fx",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "clothes2",
+              "src": "assets/s3_msk7x9fx.jpg",
+              "hash": "832bc786277f6a3c83a3a59dad67f54c7c02cfbf80930c809c7bab5bc7eff455"
+            },
+            {
+              "id": "s4_msk7xada",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "face",
+              "src": "assets/s4_msk7xada.jpg",
+              "hash": "6b57b3f7bb7e04cc713b1d9b46103248ee56ca518788c42aa5e92a5d4806987a"
+            },
+            {
+              "id": "s5_msk7xxhq",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "eyes",
+              "src": "assets/s5_msk7xxhq.jpg",
+              "hash": "859958afaf772b011c5d7f089791069117f8b0532080bff851822510be75e178"
+            },
+            {
+              "id": "s6_msk7y6lr",
+              "label": "新窗口",
+              "ratio": "4/3",
+              "hint": "点击 / 拖入图片",
+              "fit": "cover",
+              "span": false,
+              "cap": "ZB雕刻",
+              "src": "assets/s6_msk7y6lr.jpg",
+              "hash": "8c946d515451017bda218ed72f1f344a03e7634711c8a96ac030c6c2162366a8"
             }
           ]
         },
