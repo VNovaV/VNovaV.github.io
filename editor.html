@@ -1373,6 +1373,23 @@ async function verifyToken(){
     }catch(e){toast('写测试异常：'+(e&&e.message||e));}
   }catch(e){toast('验证出错：'+(e&&e.message||e));}
 }
+/* 计算图片内容指纹（SHA-256），用于判断某张图自上次发布以来是否改过 */
+async function blobHash(blob){
+  const buf=await blob.arrayBuffer();
+  const dig=await crypto.subtle.digest('SHA-256',buf);
+  return [...new Uint8Array(dig)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+/* 取上次已发布 data.json 中各槽位的指纹，避免重复上传未改动的图 */
+async function getPublishedHashes(){
+  try{
+    const r=await fetch('data.json',{cache:'no-store'});
+    if(!r.ok)return {};
+    const d=await r.json();
+    const m={};
+    (d.works||[]).forEach(w=>(w.groups||[]).forEach(g=>(g.slots||[]).forEach(s=>{if(s&&s.id&&s.hash)m[s.id]=s.hash;})));
+    return m;
+  }catch(e){return {};}
+}
 async function saveToGitHub(){
   const tok=ghToken();
   if(!tok){toast('请先粘贴 GitHub 令牌（repo 权限）');document.getElementById('ghToken').focus();return;}
@@ -1380,24 +1397,34 @@ async function saveToGitHub(){
     toast('正在收集图片…');
     /* 1) 收集已上传图片 -> assets/<id>.jpg */
     const assets=[];
+    const localHash={};            /* 有本地上传的槽位：slotId -> 内容指纹 */
+    const prevHashes=await getPublishedHashes();  /* 上次发布时存下的指纹 */
+    let localCount=0,skipCount=0;
     for(const w of state.works)for(const g of w.groups)for(const sl of (g.slots||[])){
       try{
         const rec=await idbGet(sl.id);
         if(!rec)continue;
+        localCount++;
         /* 折中：用全像素原图 rec.full，但最长边限 1920（比 900x1600 清晰、又比 4096 全原图轻） */
         const srcBlob=rec.full||recDisplayBlob(rec);
+        const h=await blobHash(srcBlob);
+        localHash[sl.id]=h;
+        /* 指纹与上次发布一致 → 图片未改，跳过上传 */
+        if(prevHashes[sl.id]===h){skipCount++;continue;}
         const b64=await blobToJpegB64(srcBlob,1920);
         assets.push({file:assetName(sl.id),b64});
       }catch(e){}
     }
-    /* 2) 构建 data.json（结构 + 文字 + 各窗口 src 指向 assets） */
+    toast('收集完成：本地 '+localCount+' 张，跳过未改 '+skipCount+' 张，待上传 '+assets.length+' 张');
+    /* 2) 构建 data.json（结构 + 文字 + 各窗口 src 指向 assets，并记录指纹） */
     const works=state.works.map(w=>({
       id:w.id,name:w.name,
       groups:w.groups.map(g=>({
         id:g.id,no:g.no,title:g.title,en:g.en,layout:g.layout,type:g.type,items:g.items,
         slots:(g.slots||[]).map(sl=>({
           id:sl.id,label:sl.label,ratio:sl.ratio,hint:sl.hint,fit:sl.fit||'cover',span:!!sl.span,cap:sl.cap||'',
-          src:( (assets.find(a=>a.file===assetName(sl.id))) ? assetName(sl.id) : (sl.src||'') )
+          src:( (sl.id in localHash) ? assetName(sl.id) : (sl.src||'') ),
+          hash:( localHash[sl.id] || '' )
         }))
       }))
     }));
