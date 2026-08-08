@@ -1384,9 +1384,7 @@ async function saveToGitHub(){
       try{
         const rec=await idbGet(sl.id);
         if(!rec)continue;
-        /* 发布用 rec.full（全像素原图），而非 rec.view（≤1600 显示缩略图），避免公开页被压成 900x1600 */
-        const srcBlob=rec.full||recDisplayBlob(rec);
-        const b64=await blobToJpegB64(srcBlob,4096);
+        const b64=await blobToJpegB64(recDisplayBlob(rec),2560);
         assets.push({file:assetName(sl.id),b64});
       }catch(e){}
     }
