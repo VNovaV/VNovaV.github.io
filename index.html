@@ -292,8 +292,9 @@
   <div class="gh-row">
     <button id="ghSave" class="gh-btn gh-primary" title="提交图片与内容到仓库">保存到 GitHub</button>
     <button id="ghLoad" class="gh-btn" title="从仓库载入已发布内容到本地">载入已发布</button>
+    <button id="ghVerify" class="gh-btn" title="检查令牌能否访问本仓库">验证令牌</button>
   </div>
-  <div class="gh-note">令牌仅存浏览器 sessionStorage，关页即清，不写入仓库或公开文件。</div>
+  <div class="gh-note">令牌仅存浏览器 sessionStorage，关页即清，不写入仓库或公开文件。若保存报 403，先点「验证令牌」看原因。</div>
 </div>
 <div class="toast" id="toast"></div>
 <input type="file" id="fileInput" accept="image/*">
@@ -1292,7 +1293,13 @@ async function ghApiPut(path,contentB64,message,sha){
   const body={message,content:contentB64};
   if(sha)body.sha=sha;
   const res=await fetch(url,{method:'PUT',headers:{'Authorization':'Bearer '+ghToken(),'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify(body)});
-  if(!res.ok){let m='';try{m=(await res.json()).message||'';}catch(e){}throw new Error('GitHub '+res.status+(m?'：'+m:''));}
+  if(!res.ok){
+    let m='',doc='',raw='';
+    try{const j=await res.json();m=j.message||'';doc=j.documentation_url||'';raw=JSON.stringify(j);}
+    catch(e){}
+    if(res.status===403&&/rate limit/i.test(m||raw)){throw new Error('GitHub 403：触发限流（'+m+'）。请等 1–2 分钟再试，或降低连续点击次数。');}
+    throw new Error('GitHub '+res.status+(m?'：'+m:'')+(doc?' ['+doc+']':''));
+  }
   return res.json();
 }
 async function ghApiGetSha(path){
@@ -1323,6 +1330,49 @@ function blobToJpegB64(blob,maxSide){
     }).catch(rej);
   });
 }
+async function verifyToken(){
+  const tok=ghToken();
+  if(!tok){toast('请先粘贴令牌');document.getElementById('ghToken').focus();return;}
+  try{
+    /* 1) 令牌本身是否有效 + 是哪个账号 */
+    let r=await fetch(`${GH_API}/user`,{headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json'}});
+    if(r.status===401)return toast('❌ 令牌无效或已过期（401）— 重新生成并复制整串');
+    if(!r.ok)return toast('❌ 校验账号失败：'+r.status);
+    const who=await r.json();
+    /* 2) 能否访问目标仓库 */
+    r=await fetch(`${GH_API}/repos/${GH.owner}/${GH.repo}`,{headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json'}});
+    if(r.status===404)return toast('❌ 令牌无权访问 '+GH.owner+'/'+GH.repo+'（404）— 细粒度令牌需在「Repository access」里授权该仓库');
+    if(r.status===403)return toast('❌ 令牌被拒访问该仓库（403）— 细粒度令牌未授权此仓库或权限不足');
+    if(!r.ok)return toast('❌ 访问仓库失败：'+r.status);
+    const repo=await r.json();
+    /* 3) 是否有 Contents 写权限 */
+    const perms=repo.permissions||{};
+    const canPush=!!perms.push;
+    const permStr='pull='+!!perms.pull+' push='+!!perms.push+' admin='+!!perms.admin+' maintain='+!!perms.maintain+' triage='+!!perms.triage;
+    if(canPush){
+      toast('✅ 令牌可读写：'+who.login+' → '+GH.owner+'/'+GH.repo+' ['+permStr+']，可直接保存');
+    }else{
+      toast('⚠️ 令牌只有读权限，无 push（无法写入）：['+permStr+']。请确认细粒度令牌的 Repository access 已授权本仓库且 Contents=Read and write');
+    }
+    console.log('[verifyToken] login=',who.login,'repo=',GH.owner+'/'+GH.repo,'permissions=',perms);
+    /* 4) 真刀真枪试一次写（写个临时文件再删掉），判断 Contents 写是否真的可用 */
+    try{
+      const testPath='_gh_write_test.txt';
+      const putUrl=`${GH_API}/repos/${GH.owner}/${GH.repo}/contents/${testPath}`;
+      const putRes=await fetch(putUrl,{method:'PUT',headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify({message:'gh write test',content:utf8ToBase64('ok')})});
+      if(putRes.status===201||putRes.status===200){
+        const j=await putRes.json();const sha=j.content?j.content.sha:null;
+        await fetch(putUrl,{method:'DELETE',headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify({message:'gh write test cleanup',sha})});
+        toast('✅ 实测写入成功（临时文件已清理），令牌写权限确实可用；若保存仍 403，多为限流，稍后再试');
+      }else if(putRes.status===403){
+        let mm='';try{mm=(await putRes.json()).message||'';}catch(e){}
+        toast('❌ 实测写入被拒 403：'+mm+' — 令牌无 Contents 写权限（请检查 Contents 是否为 Read and write，且 Repository access 已授权本仓库）');
+      }else{
+        toast('⚠️ 实测写入返回 '+putRes.status+'，请截图给我');
+      }
+    }catch(e){toast('写测试异常：'+(e&&e.message||e));}
+  }catch(e){toast('验证出错：'+(e&&e.message||e));}
+}
 async function saveToGitHub(){
   const tok=ghToken();
   if(!tok){toast('请先粘贴 GitHub 令牌（repo 权限）');document.getElementById('ghToken').focus();return;}
@@ -1334,7 +1384,9 @@ async function saveToGitHub(){
       try{
         const rec=await idbGet(sl.id);
         if(!rec)continue;
-        const b64=await blobToJpegB64(recDisplayBlob(rec),2560);
+        /* 发布用 rec.full（全像素原图），而非 rec.view（≤1600 显示缩略图），避免公开页被压成 900x1600 */
+        const srcBlob=rec.full||recDisplayBlob(rec);
+        const b64=await blobToJpegB64(srcBlob,4096);
         assets.push({file:assetName(sl.id),b64});
       }catch(e){}
     }
@@ -1405,6 +1457,7 @@ async function init(){
     const ghTokEl=document.getElementById('ghToken');
     if(ghTokEl){ghTokEl.value=ghToken();ghTokEl.addEventListener('input',()=>{sessionStorage.setItem('gh_token',ghTokEl.value.trim());});}
     document.getElementById('ghSave').addEventListener('click',saveToGitHub);
+    document.getElementById('ghVerify').addEventListener('click',verifyToken);
     document.getElementById('ghLoad').addEventListener('click',async()=>{
       if(await loadPublished()){build();restoreImages();fixSlotHeights();toast('已载入已发布内容');}
       else toast('尚未发布过（仓库没有 data.json）');
