@@ -292,8 +292,9 @@
   <div class="gh-row">
     <button id="ghSave" class="gh-btn gh-primary" title="提交图片与内容到仓库">保存到 GitHub</button>
     <button id="ghLoad" class="gh-btn" title="从仓库载入已发布内容到本地">载入已发布</button>
+    <button id="ghVerify" class="gh-btn" title="检查令牌能否访问本仓库">验证令牌</button>
   </div>
-  <div class="gh-note">令牌仅存浏览器 sessionStorage，关页即清，不写入仓库或公开文件。</div>
+  <div class="gh-note">令牌仅存浏览器 sessionStorage，关页即清，不写入仓库或公开文件。若保存报 403，先点「验证令牌」看原因。</div>
 </div>
 <div class="toast" id="toast"></div>
 <input type="file" id="fileInput" accept="image/*">
@@ -1323,6 +1324,27 @@ function blobToJpegB64(blob,maxSide){
     }).catch(rej);
   });
 }
+async function verifyToken(){
+  const tok=ghToken();
+  if(!tok){toast('请先粘贴令牌');document.getElementById('ghToken').focus();return;}
+  try{
+    /* 1) 令牌本身是否有效 + 是哪个账号 */
+    let r=await fetch(`${GH_API}/user`,{headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json'}});
+    if(r.status===401)return toast('❌ 令牌无效或已过期（401）— 重新生成并复制整串');
+    if(!r.ok)return toast('❌ 校验账号失败：'+r.status);
+    const who=await r.json();
+    /* 2) 能否访问目标仓库 */
+    r=await fetch(`${GH_API}/repos/${GH.owner}/${GH.repo}`,{headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json'}});
+    if(r.status===404)return toast('❌ 令牌无权访问 '+GH.owner+'/'+GH.repo+'（404）— 细粒度令牌需在「Repository access」里授权该仓库');
+    if(r.status===403)return toast('❌ 令牌被拒访问该仓库（403）— 细粒度令牌未授权此仓库或权限不足');
+    if(!r.ok)return toast('❌ 访问仓库失败：'+r.status);
+    const repo=await r.json();
+    /* 3) 是否有 Contents 写权限 */
+    const perms=repo.permissions||{};
+    const canPush=!!perms.push;
+    toast((canPush?'✅ 令牌 OK：':'⚠️ 令牌可读但可能无写权限：')+who.login+' → '+GH.owner+'/'+GH.repo+(canPush?'（有 push 权限，可直接保存）':''));
+  }catch(e){toast('验证出错：'+(e&&e.message||e));}
+}
 async function saveToGitHub(){
   const tok=ghToken();
   if(!tok){toast('请先粘贴 GitHub 令牌（repo 权限）');document.getElementById('ghToken').focus();return;}
@@ -1405,6 +1427,7 @@ async function init(){
     const ghTokEl=document.getElementById('ghToken');
     if(ghTokEl){ghTokEl.value=ghToken();ghTokEl.addEventListener('input',()=>{sessionStorage.setItem('gh_token',ghTokEl.value.trim());});}
     document.getElementById('ghSave').addEventListener('click',saveToGitHub);
+    document.getElementById('ghVerify').addEventListener('click',verifyToken);
     document.getElementById('ghLoad').addEventListener('click',async()=>{
       if(await loadPublished()){build();restoreImages();fixSlotHeights();toast('已载入已发布内容');}
       else toast('尚未发布过（仓库没有 data.json）');
