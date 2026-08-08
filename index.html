@@ -1382,7 +1382,7 @@ async function blobHash(blob){
 /* 取上次已发布 data.json 中各槽位的指纹，避免重复上传未改动的图 */
 async function getPublishedHashes(){
   try{
-    const r=await fetch('data.json',{cache:'no-store'});
+    const r=await fetch('data.json?_='+Date.now(),{cache:'no-store'});
     if(!r.ok)return {};
     const d=await r.json();
     const m={};
@@ -1430,16 +1430,31 @@ async function saveToGitHub(){
     }));
     const published={version:1,updatedAt:new Date().toISOString(),theme:(localStorage.getItem(LS_THEME)||'paper'),sub:state.sub,works};
     const dataB64=utf8ToBase64(JSON.stringify(published,null,2));
-    /* 3) 提交：先图片，再 data.json */
+    /* 3) 提交：先图片（失败不阻断文字），再 data.json（独立 try，文字必须发布） */
     let n=0;
     for(const a of assets){
-      const sha=await ghApiGetSha(a.file);
-      await ghApiPut(a.file,a.b64,'update asset '+a.file,sha);
-      n++;toast('已上传图片 '+n+'/'+assets.length);
+      try{
+        const sha=await ghApiGetSha(a.file);
+        await ghApiPut(a.file,a.b64,'update asset '+a.file,sha);
+        n++;toast('已上传图片 '+n+'/'+assets.length);
+      }catch(e){ toast('⚠️ 图片 '+a.file+' 上传失败：'+(e&&e.message||e)+'（不影响文字发布）'); }
     }
-    const dsha=await ghApiGetSha('data.json');
-    await ghApiPut('data.json',dataB64,'publish portfolio',dsha);
-    toast('✅ 已发布到 GitHub，公开页刷新即可见');
+    try{
+      let dsha=await ghApiGetSha('data.json');
+      try{
+        await ghApiPut('data.json',dataB64,'publish portfolio',dsha);
+      }catch(e){
+        if(/409|SHA does not match/i.test(e.message||'')){
+          await new Promise(r=>setTimeout(r,500));
+          dsha=await ghApiGetSha('data.json');           /* 重新取最新 SHA 再试 */
+          await ghApiPut('data.json',dataB64,'publish portfolio',dsha);
+        }else throw e;
+      }
+      toast('✅ 已发布到 GitHub，公开页刷新即可见（文字已更新）');
+    }catch(e){
+      console.error('[saveToGitHub] data.json publish failed',e);
+      toast('❌ 文字/结构发布失败：'+(e&&e.message||e));
+    }
   }catch(e){
     console.error(e);
     toast('发布失败：'+(e&&e.message||e));
