@@ -1130,14 +1130,12 @@ async function exportStatic(){
     for(const w of st.works)for(const g of w.groups)for(const s of (g.slots||[])){
       try{
         let url=null,fit=s.fit||'cover';
-        /* 固定图源：优先抓取仓库 assets/ 图片内嵌 */
-        if(s.src){
+        /* 优先取浏览器本地上传的真实图片（你实际传的图） */
+        const rec=await idbGet(s.id);
+        if(rec){url=await blobToDataURL(recDisplayBlob(rec));}
+        /* 若没有本地上传，才回退到仓库固定图源 assets/（占位图） */
+        if(!url && s.src){
           try{url=await fetchToDataURL(s.src);}catch(e){}
-        }
-        /* 否则取浏览器本地上传的图片 */
-        if(!url){
-          const rec=await idbGet(s.id);
-          if(rec){url=await blobToDataURL(recDisplayBlob(rec));}
         }
         if(url){imgMap[s.id]={url,fit};count++;}
       }catch(e){}
