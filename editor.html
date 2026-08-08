@@ -1384,7 +1384,9 @@ async function saveToGitHub(){
       try{
         const rec=await idbGet(sl.id);
         if(!rec)continue;
-        const b64=await blobToJpegB64(recDisplayBlob(rec),2560);
+        /* 折中：用全像素原图 rec.full，但最长边限 1920（比 900x1600 清晰、又比 4096 全原图轻） */
+        const srcBlob=rec.full||recDisplayBlob(rec);
+        const b64=await blobToJpegB64(srcBlob,1920);
         assets.push({file:assetName(sl.id),b64});
       }catch(e){}
     }
