@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-08T10:17:08.943Z",
+  "updatedAt": "2026-08-08T10:20:18.431Z",
   "theme": "ink",
   "sub": "3D CHARACTER · EFFECT RENDER",
   "works": [
@@ -20,7 +20,7 @@
               "label": "角色效果图",
               "ratio": "3/4",
               "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
-              "fit": "cover",
+              "fit": "contain",
               "span": false,
               "cap": "",
               "src": "assets/s4_msjzrzp1.jpg",
@@ -31,7 +31,7 @@
               "label": "角色无光图",
               "ratio": "3/4",
               "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
-              "fit": "cover",
+              "fit": "contain",
               "span": false,
               "cap": "",
               "src": "assets/s5_msjzrzp1.jpg",
