@@ -1,0 +1,271 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-08T07:16:04.270Z",
+  "theme": "paper",
+  "sub": "3D CHARACTER · EFFECT RENDER",
+  "works": [
+    {
+      "id": "w2_msjzrzp0",
+      "name": "未命名作品 01",
+      "groups": [
+        {
+          "id": "g3_msjzrzp0",
+          "no": "01",
+          "title": "3D角色效果主图",
+          "en": "EFFECT RENDER",
+          "layout": "gg2",
+          "slots": [
+            {
+              "id": "s4_msjzrzp1",
+              "label": "角色效果图",
+              "ratio": "3/4",
+              "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/s4_msjzrzp1.jpg"
+            },
+            {
+              "id": "s5_msjzrzp1",
+              "label": "角色无光图",
+              "ratio": "3/4",
+              "hint": "点击 / 拖入图片 · 建议 3:4 竖图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            }
+          ]
+        },
+        {
+          "id": "g6_msjzrzp1",
+          "no": "02",
+          "title": "角色渲染三视图",
+          "en": "EFFECT RENDER",
+          "layout": "gg3",
+          "slots": [
+            {
+              "id": "s7_msjzrzp1",
+              "label": "角色正视图",
+              "ratio": "9/16",
+              "hint": "点击 / 拖入图片 · 建议 9:16 竖图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s8_msjzrzp1",
+              "label": "角色侧视图",
+              "ratio": "9/16",
+              "hint": "点击 / 拖入图片 · 建议 9:16 竖图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s9_msjzrzp1",
+              "label": "角色后视图",
+              "ratio": "9/16",
+              "hint": "点击 / 拖入图片 · 建议 9:16 竖图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            }
+          ]
+        },
+        {
+          "id": "g10_msjzrzp1",
+          "no": "03",
+          "title": "角色无光三视图",
+          "en": "EFFECT RENDER",
+          "layout": "gg3",
+          "slots": [
+            {
+              "id": "s11_msjzrzp1",
+              "label": "角色正视图",
+              "ratio": "9/16",
+              "hint": "点击 / 拖入图片 · 建议 9:16 竖图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s12_msjzrzp1",
+              "label": "角色侧视图",
+              "ratio": "9/16",
+              "hint": "点击 / 拖入图片 · 建议 9:16 竖图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s13_msjzrzp1",
+              "label": "角色后视图",
+              "ratio": "9/16",
+              "hint": "点击 / 拖入图片 · 建议 9:16 竖图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            }
+          ]
+        },
+        {
+          "id": "g14_msjzrzp1",
+          "no": "04",
+          "title": "角色局部特写",
+          "en": "EFFECT RENDER",
+          "layout": "gg4",
+          "slots": [
+            {
+              "id": "s15_msjzrzp1",
+              "label": "角色局部特写1",
+              "ratio": "1/1",
+              "hint": "点击 / 拖入图片 · 建议 1:1 方图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/p09.jpg"
+            },
+            {
+              "id": "s16_msjzrzp1",
+              "label": "角色局部特写2",
+              "ratio": "1/1",
+              "hint": "点击 / 拖入图片 · 建议 1:1 方图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": "assets/p10.jpg"
+            },
+            {
+              "id": "s17_msjzrzp1",
+              "label": "角色局部特写3",
+              "ratio": "1/1",
+              "hint": "点击 / 拖入图片 · 建议 1:1 方图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s18_msjzrzp1",
+              "label": "角色局部特写4",
+              "ratio": "1/1",
+              "hint": "点击 / 拖入图片 · 建议 1:1 方图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s19_msjzrzp1",
+              "label": "角色局部特写5",
+              "ratio": "16/9",
+              "hint": "点击 / 拖入图片 · 建议 16:9 横图",
+              "fit": "cover",
+              "span": true,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s20_msjzrzp1",
+              "label": "角色局部特写6",
+              "ratio": "16/9",
+              "hint": "点击 / 拖入图片 · 建议 16:9 横图",
+              "fit": "cover",
+              "span": true,
+              "cap": "",
+              "src": ""
+            }
+          ]
+        },
+        {
+          "id": "g21_msjzrzp1",
+          "no": "05",
+          "title": "制作过程",
+          "en": "EFFECT RENDER",
+          "layout": "gg2",
+          "slots": [
+            {
+              "id": "s22_msjzrzp1",
+              "label": "贴图绘制界面",
+              "ratio": "16/9",
+              "hint": "点击 / 拖入图片 · 建议 16:9 横图",
+              "fit": "cover",
+              "span": true,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s23_msjzrzp1",
+              "label": "模型制作过程 1",
+              "ratio": "16/9",
+              "hint": "点击 / 拖入图片 · 建议 16:9 横图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s24_msjzrzp1",
+              "label": "模型制作过程 2",
+              "ratio": "16/9",
+              "hint": "点击 / 拖入图片 · 建议 16:9 横图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s25_msjzrzp1",
+              "label": "模型制作过程 3",
+              "ratio": "16/9",
+              "hint": "点击 / 拖入图片 · 建议 16:9 横图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s26_msjzrzp1",
+              "label": "模型制作过程 4",
+              "ratio": "16/9",
+              "hint": "点击 / 拖入图片 · 建议 16:9 横图",
+              "fit": "cover",
+              "span": false,
+              "cap": "",
+              "src": ""
+            },
+            {
+              "id": "s27_msjzrzp1",
+              "label": "渲染界面",
+              "ratio": "16/9",
+              "hint": "点击 / 拖入图片 · 建议 16:9 横图",
+              "fit": "cover",
+              "span": true,
+              "cap": "",
+              "src": ""
+            }
+          ]
+        },
+        {
+          "id": "g28_msjzrzp1",
+          "no": "06",
+          "title": "制作总结",
+          "en": "SUMMARY · NOTES",
+          "type": "summary",
+          "items": [
+            "在此输入制作总结…",
+            "可记录制作周期、使用软件、心得体会等"
+          ],
+          "slots": []
+        }
+      ]
+    }
+  ]
+}
