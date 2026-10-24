@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-24T09:24:01.112Z",
-  "theme": "ink",
+  "updatedAt": "2026-10-24T09:24:46.266Z",
+  "theme": "paper",
   "sub": "3D CHARACTER · EFFECT RENDER",
   "works": [
     {
@@ -24,7 +24,7 @@
               "span": false,
               "cap": "pbr+npr",
               "src": "assets/s4_msjzrzp1.jpg",
-              "hash": "4a1fab7c97a98fe205bd84ac3d9b11864d781d4842065129cbf4aa964603f043"
+              "hash": "298ca3cddeb2ba6e04ad139ea6ce8098eb70e7f6f8372374e0e732833efec7b8"
             },
             {
               "id": "s5_msjzrzp1",
