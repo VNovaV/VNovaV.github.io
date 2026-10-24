@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-24T09:24:46.266Z",
+  "updatedAt": "2026-10-24T09:57:00.439Z",
   "theme": "paper",
   "sub": "3D CHARACTER · EFFECT RENDER",
   "works": [
@@ -139,7 +139,7 @@
               "span": false,
               "cap": "",
               "src": "assets/s15_msjzrzp1.jpg",
-              "hash": "67ac11155f71576d9a2f20e39890feb1b7fe2075d8ff845f92283a7372c68e89"
+              "hash": "298ca3cddeb2ba6e04ad139ea6ce8098eb70e7f6f8372374e0e732833efec7b8"
             },
             {
               "id": "s16_msjzrzp1",
@@ -150,7 +150,7 @@
               "span": false,
               "cap": "",
               "src": "assets/s16_msjzrzp1.jpg",
-              "hash": "681154f1d793ba4061fdbd0bd1459ac217b44775f100939b82299b6e417a7a5f"
+              "hash": "06b0d30c1a938b9fd25a50878920cec9dd2532643a6759169dc2fda74dbd3f7a"
             },
             {
               "id": "s17_msjzrzp1",
@@ -258,7 +258,7 @@
               "span": true,
               "cap": "中高模",
               "src": "assets/s22_msjzrzp1.jpg",
-              "hash": "6e2f3f56d7a5946a420cac4f2f4be65a010c69e5a903d17244fce81608b09b20"
+              "hash": "d534780788d69897ba7f47f5b6729ae4069fe4eff05cb67a3cf6d9e302f6e58a"
             },
             {
               "id": "s23_msjzrzp1",
@@ -269,7 +269,7 @@
               "span": false,
               "cap": "",
               "src": "assets/s23_msjzrzp1.jpg",
-              "hash": "ac6a24f58fc3fbfb7a0e87b3bb9a1a6efa822a12fb988e9ebe045ea0d71f5524"
+              "hash": "cbf443df4b129c1cd816286d6268121e1f291ec0d240472ffc13f4af0ca9c685"
             },
             {
               "id": "s24_msjzrzp1",
@@ -280,7 +280,7 @@
               "span": false,
               "cap": "减线",
               "src": "assets/s24_msjzrzp1.jpg",
-              "hash": "55832855dd8b862a4bdc4a7ce2195a9ea031710664769f39da68af81d3750b5d"
+              "hash": "aeacca72e3f091357f43f88f82e4274b9c271c3c582e94f39de3f3c6a3d91b24"
             },
             {
               "id": "s25_msjzrzp1",
@@ -291,7 +291,7 @@
               "span": false,
               "cap": "",
               "src": "assets/s25_msjzrzp1.jpg",
-              "hash": "64d079c6aa1d087371c3312702aa341e00d4769800c1836c2950cf7b2575b0ee"
+              "hash": "0a58a2f283941f4922a831216313c2d35b98121638e584c0d5d1ac0dadb4d50d"
             },
             {
               "id": "s26_msjzrzp1",
@@ -313,7 +313,7 @@
               "span": true,
               "cap": "pt绘制",
               "src": "assets/s27_msjzrzp1.jpg",
-              "hash": "7af11841ae4a5c9bef4af2b362f6bf8311a9795f0d8cc8d5b2aedf673a3902e4"
+              "hash": "5d0f5bca456ea0b2428e495028c2ec8eb17e2d3e4a0fd051f66cabfd7959ffa4"
             },
             {
               "id": "s24_msk7p9jj",
@@ -417,7 +417,7 @@
             "uv利用率已经蛮高了都在80以上，融入了AI工作流，对AI建模进行了修模和重拓扑",
             "其他使用的软件为pt(绘制贴图)，ps(修法线)，rizomUV(展UV)，ZB(高模雕刻)",
             "给孩子一份实习吧/(ㄒoㄒ)/~~",
-            "新条目…"
+            "联系方式：QQ：2900384003VX：toBeTheMaker"
           ],
           "slots": []
         }
