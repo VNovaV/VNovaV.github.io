@@ -653,7 +653,9 @@ async function renderImage(id){
   const sl=findSlot(id);
   /* 固定图片：优先从仓库相对路径加载（assets/xxx.jpg），访客永久可见 */
   if(sl&&sl.src){
-    await renderSrc(el,sl.src,sl.fit);
+    /* 追加内容指纹作为缓存破除参数：照片内容一变 hash 即变，URL 随之变化，避免同文件名换图后仍显示旧图缓存 */
+    const v=sl.hash?('?v='+encodeURIComponent(sl.hash)):'';
+    await renderSrc(el,sl.src+v,sl.fit);
     return;
   }
   const rec=await idbGet(id);
