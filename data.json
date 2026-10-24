@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-24T09:17:33.107Z",
-  "theme": "paper",
+  "updatedAt": "2026-10-24T09:24:01.112Z",
+  "theme": "ink",
   "sub": "3D CHARACTER · EFFECT RENDER",
   "works": [
     {
@@ -96,8 +96,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "",
-              "hash": ""
+              "src": "assets/s11_msjzrzp1.jpg",
+              "hash": "c2e36daa261ab0de83f642c4d79d8ab347747f6a960a97dc3454ea20c4ebdc5a"
             },
             {
               "id": "s12_msjzrzp1",
@@ -107,8 +107,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "",
-              "hash": ""
+              "src": "assets/s12_msjzrzp1.jpg",
+              "hash": "e7e73bf3351430e756f5da9288fffe15240eb96f6684dd2a555c017fcb749954"
             },
             {
               "id": "s13_msjzrzp1",
@@ -118,8 +118,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "",
-              "hash": ""
+              "src": "assets/s13_msjzrzp1.jpg",
+              "hash": "34f762eaffa2b77a86fb9cd24143066779a687c7f9d2be951d2c040ff0d63f83"
             }
           ]
         },
