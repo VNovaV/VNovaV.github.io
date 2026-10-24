@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-08T10:49:56.769Z",
-  "theme": "ink",
+  "updatedAt": "2026-10-24T09:17:33.107Z",
+  "theme": "paper",
   "sub": "3D CHARACTER · EFFECT RENDER",
   "works": [
     {
@@ -96,8 +96,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s11_msjzrzp1.jpg",
-              "hash": "8898c31fd3ef77bb968e7464acba30ae2a4f417de39fd5d9c7ef72c872ceff1c"
+              "src": "",
+              "hash": ""
             },
             {
               "id": "s12_msjzrzp1",
@@ -107,8 +107,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s12_msjzrzp1.jpg",
-              "hash": "20492edbe404304f2465df96d7e9c116f47bfd9071be6de37dcf3d6beda39439"
+              "src": "",
+              "hash": ""
             },
             {
               "id": "s13_msjzrzp1",
@@ -118,8 +118,8 @@
               "fit": "cover",
               "span": false,
               "cap": "",
-              "src": "assets/s13_msjzrzp1.jpg",
-              "hash": "9ee106fe01bf53f551fc4e63b9c2b9055e634dae7bccc0cf47be6cd5ad615066"
+              "src": "",
+              "hash": ""
             }
           ]
         },
@@ -183,7 +183,7 @@
               "span": true,
               "cap": "",
               "src": "assets/s19_msjzrzp1.jpg",
-              "hash": "c5bf738d3b923c5c941d4d685b1fc8a12d1ac22464784e7b8bb216f121093489"
+              "hash": "03055371fcf9442214ce306917c669a4af1a1d49ce9bd0345fa104b8bcf45623"
             },
             {
               "id": "s20_msjzrzp1",
@@ -194,7 +194,7 @@
               "span": true,
               "cap": "",
               "src": "assets/s20_msjzrzp1.jpg",
-              "hash": "d69364fda29a627353fcf4fd3adb775a3842d13cac5a60a197d32affb4bd5b7a"
+              "hash": "ac3147e19668369080f88b5a812bdfdd3a5b283fa4fb757cb81c1bb783ec57e0"
             },
             {
               "id": "s20_msk7oq81",
